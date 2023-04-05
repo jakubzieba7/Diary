@@ -27,5 +27,6 @@ namespace Diary.Views
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
     }
 }

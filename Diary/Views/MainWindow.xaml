@@ -14,13 +14,43 @@
             <RowDefinition/>
                 </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Dodaj" Height="25" Width="100" Margin="5"/>
-            <Button Content="Edytuj" Height="25" Width="100" Margin="5"/>
-            <Button Content="Usuń" Height="25" Width="100" Margin="5"/>
-            <ComboBox Height="25" Width="150" Margin="5"/>
+            <Button 
+                Command="{Binding AddStudentCommand}"
+                Content="Dodaj" 
+                Height="25" 
+                Width="100" 
+                Margin="5"
+                
+                />
+            <Button 
+                Command="{Binding EditStudentCommand}"
+                CommandParameter="{Binding SelectedStudent}"
+                Content="Edytuj" 
+                Height="25" 
+                Width="100" 
+                Margin="5"
+                
+                />
+            <Button 
+                Command="{Binding DeleteStudentCommand}"
+                Content="Usuń" 
+                Height="25" 
+                Width="100" 
+                Margin="5"
+                
+                />
+            <ComboBox 
+                Height="25" 
+                Width="150" 
+                Margin="5"
+                ItemsSource="{Binding Groups}"
+                SelectedValue="{Binding SelectedGroupId}"
+                DisplayMemberPath="Name"
+                SelectedValuePath="Id"
+                />
             <Button Command="{Binding RefreshStudentsCommand}" Content="Odśwież" Height="25" Width="100" Margin="5"/>
         </StackPanel>
-        <DataGrid> 
+        <DataGrid 
             Grid.Row="1" 
             Margin="5"
             ItemsSource="{Binding Students}"
@@ -28,7 +58,7 @@
             CanUserAddRows="False"
             IsReadOnly="True"
             SelectionMode="Single"
-            AutoGenerateColumns="False"
+            AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Visibility="Hidden" Header="L.p."/>
                 <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię"/>
@@ -39,7 +69,7 @@
                 <DataGridTextColumn Binding="{Binding Physics}" Header="Fizyka"/>
                 <DataGridTextColumn Binding="{Binding PolishLang}" Header="Język polski"/>
                 <DataGridTextColumn Binding="{Binding ForeignLang}" Header="Język obcy"/>
-                <DataGridCheckBoxColumn Binding="{Binding Activities}"/>
+                <DataGridCheckBoxColumn Binding="{Binding Activities}" Header="Dodatkowe"/>
                 <DataGridTextColumn Binding="{Binding Group.Name}" Header="Klasa"/>
             </DataGrid.Columns>
 
