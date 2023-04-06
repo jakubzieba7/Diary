@@ -19,7 +19,12 @@ namespace Diary.ViewModels
     {
         public MainViewModel()
         {
-            AddStudentCommand = new RelayCommand(AddEditStudents);
+            using (var context = new ApplicationDBContext())
+            {
+                var students = context.Students.ToList();
+            }
+
+                AddStudentCommand = new RelayCommand(AddEditStudents);
             EditStudentCommand = new RelayCommand(AddEditStudents, CanEditDeleteStudents);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudents, CanEditDeleteStudents);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
