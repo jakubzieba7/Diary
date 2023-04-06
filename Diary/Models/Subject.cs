@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Diary.Models
 {
-    public class Group
+    public enum Subject
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        Math,
+        Technology,
+        Physics,
+        PolishLang,
+        ForeignLang,
     }
 }
