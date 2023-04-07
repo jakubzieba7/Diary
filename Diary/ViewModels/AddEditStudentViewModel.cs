@@ -1,5 +1,6 @@
 ﻿using Diary.Commands;
 using Diary.Models;
+using Diary.Models.Domains;
 using Diary.Models.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ using System.Windows.Input;
 
 namespace Diary.ViewModels
 {
-    internal class AddEditStudentViewModel : ViewModelBase
+    public class AddEditStudentViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public AddEditStudentViewModel(StudentWrapper student = null)
         {
             CloseCommand = new RelayCommand(Close);
@@ -72,9 +74,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -120,22 +122,10 @@ namespace Diary.ViewModels
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-            new GroupWrapper{ Id=0,Name="-- brak --"},
-            new GroupWrapper{ Id=1,Name="1A"},
-            new GroupWrapper{ Id=2,Name="1B"},
-            new GroupWrapper{ Id=3,Name="2A"},
-            new GroupWrapper{ Id=4,Name="2B"},
-            new GroupWrapper{ Id=5,Name="3A"},
-            new GroupWrapper{ Id=6,Name="3B"},
-            new GroupWrapper{ Id=7,Name="4A"},
-            new GroupWrapper{ Id=8,Name="4B"},
-            new GroupWrapper{ Id=9,Name="5A"},
-            new GroupWrapper{ Id=10,Name="5B"},
-            new GroupWrapper{ Id=11,Name="6A"},
-            new GroupWrapper{ Id=12,Name="6B"}
-            };
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "-- brak --" });
+
+            Groups = new ObservableCollection<Group>(groups);
 
             Student.Group.Id = 0;
         }

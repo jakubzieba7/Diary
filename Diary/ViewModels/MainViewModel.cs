@@ -1,5 +1,6 @@
 ﻿using Diary.Commands;
 using Diary.Models;
+using Diary.Models.Domains;
 using Diary.Models.Wrappers;
 using Diary.Views;
 using MahApps.Metro.Controls;
@@ -17,6 +18,8 @@ namespace Diary.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
+
         public MainViewModel()
         {
             using (var context = new ApplicationDBContext())
@@ -24,7 +27,7 @@ namespace Diary.ViewModels
                 var students = context.Students.ToList();
             }
 
-                AddStudentCommand = new RelayCommand(AddEditStudents);
+            AddStudentCommand = new RelayCommand(AddEditStudents);
             EditStudentCommand = new RelayCommand(AddEditStudents, CanEditDeleteStudents);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudents, CanEditDeleteStudents);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
@@ -33,7 +36,7 @@ namespace Diary.ViewModels
             InitGroups();
         }
 
-        
+
 
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
@@ -77,9 +80,9 @@ namespace Diary.ViewModels
             }
         }
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -96,7 +99,7 @@ namespace Diary.ViewModels
         private async Task DeleteStudents(object obj)
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
-            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia {SelectedStudent.FirstName}  {SelectedStudent.LastName}",MessageDialogStyle.AffirmativeAndNegative);
+            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia {SelectedStudent.FirstName}  {SelectedStudent.LastName}", MessageDialogStyle.AffirmativeAndNegative);
 
             if (dialog != MessageDialogResult.Affirmative)
                 return;
@@ -124,22 +127,10 @@ namespace Diary.ViewModels
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-            new GroupWrapper{ Id=0,Name="Wszyscy"},
-            new GroupWrapper{ Id=1,Name="1A"},
-            new GroupWrapper{ Id=2,Name="1B"},
-            new GroupWrapper{ Id=3,Name="2A"},
-            new GroupWrapper{ Id=4,Name="2B"},
-            new GroupWrapper{ Id=5,Name="3A"},
-            new GroupWrapper{ Id=6,Name="3B"},
-            new GroupWrapper{ Id=7,Name="4A"},
-            new GroupWrapper{ Id=8,Name="4B"},
-            new GroupWrapper{ Id=9,Name="5A"},
-            new GroupWrapper{ Id=10,Name="5B"},
-            new GroupWrapper{ Id=11,Name="6A"},
-            new GroupWrapper{ Id=12,Name="6B"}
-            };
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "Wszyscy" });
+
+            Groups = new ObservableCollection<Group>(groups);
 
             SelectedGroupId = 0;
         }
@@ -147,26 +138,7 @@ namespace Diary.ViewModels
         public void RefreshDiary()
         {
             Students = new ObservableCollection<StudentWrapper>
-            {
-                new StudentWrapper
-                {
-                    FirstName="Jakub",
-                    LastName="Zięba",
-                    Group=new GroupWrapper{Id=12,Name="6B" }
-                },
-                new StudentWrapper
-                {
-                    FirstName="Jan",
-                    LastName="Zięba",
-                    Group=new GroupWrapper{Id=4,Name="2B" }
-                },
-                new StudentWrapper
-                {
-                    FirstName="Zofia",
-                    LastName="Zięba",
-                    Group=new GroupWrapper{Id=2,Name="1B" }
-                },
-            };
+            (_repository.GetStudents(SelectedGroupId));
         }
     }
 }
