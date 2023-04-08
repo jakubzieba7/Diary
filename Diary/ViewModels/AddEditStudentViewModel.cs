@@ -112,12 +112,12 @@ namespace Diary.ViewModels
 
         private void UpdateStudent()
         {
-            throw new NotImplementedException();
+            _repository.UpdateStudent(Student);
         }
 
         private void AddStudent()
         {
-            throw new NotImplementedException();
+            _repository.AddStudent(Student);
         }
 
         private void InitGroups()

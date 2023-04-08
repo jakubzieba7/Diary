@@ -104,6 +104,8 @@ namespace Diary.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
+            _repository.DeleteStudent(SelectedStudent.Id);
+
             RefreshDiary();
         }
 
