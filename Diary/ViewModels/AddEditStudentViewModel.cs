@@ -46,7 +46,7 @@ namespace Diary.ViewModels
             set
             {
                 _student = value;
-                OnPropertyChanged(nameof(Student));
+                OnPropertyChanged();
             }
         }
 
@@ -58,7 +58,7 @@ namespace Diary.ViewModels
             set
             {
                 _isUpdate = value;
-                OnPropertyChanged($"{nameof(IsUpdate)}");
+                OnPropertyChanged();
             }
         }
 
@@ -82,7 +82,7 @@ namespace Diary.ViewModels
             set
             {
                 _groups = value;
-                OnPropertyChanged(nameof(Groups));
+                OnPropertyChanged();
             }
         }
 
@@ -127,7 +127,7 @@ namespace Diary.ViewModels
 
             Groups = new ObservableCollection<Group>(groups);
 
-            Student.Group.Id = 0;
+            SelectedGroupId = Student.Group.Id;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Diary.Models.Converters;
 using Diary.Models;
+using System.Runtime.Remoting.Contexts;
 
 namespace Diary
 {
@@ -71,46 +72,65 @@ namespace Diary
 
             using (var context = new ApplicationDBContext())
             {
-                var studentToUpdate = context.Students.Find(student.Id);
-                studentToUpdate.Activities = student.Activities;
-                studentToUpdate.Comments = student.Comments;
-                studentToUpdate.FirstName = student.FirstName;
-                studentToUpdate.LastName = student.LastName;
-                studentToUpdate.GroupId = student.GroupId;
+                UpdateStudentProperties(context, student);
 
-                var studentsRatings = context.Ratings.Where(x => x.StudentId == student.Id).ToList();
+                var studentsRatings = GetStudentRatings(context, student);
 
-                var mathRatings = studentsRatings.Where(x => x.SubjectId == (int)Subject.Math).Select(x => x.Rate);
+                UpdateRate(student, ratings, context, studentsRatings, Subject.Math);
+                UpdateRate(student, ratings, context, studentsRatings, Subject.Physics);
+                UpdateRate(student, ratings, context, studentsRatings, Subject.Technology);
+                UpdateRate(student, ratings, context, studentsRatings, Subject.PolishLang);
+                UpdateRate(student, ratings, context, studentsRatings, Subject.ForeignLang);
 
-                var newMathRatings = ratings.Where(x => x.SubjectId == (int)Subject.Math).Select(x => x.Rate);
-
-                var mathRatingsToDelete = mathRatings.Except(newMathRatings).ToList();
-
-                var mathRatingsToAdd = newMathRatings.Except(mathRatings).ToList();
-
-                mathRatingsToDelete.ForEach(x =>
-                {
-                    var ratingToDelete = context.Ratings.First(y =>
-                    y.Rate == x &&
-                    y.StudentId == student.Id &&
-                    y.SubjectId == (int)Subject.Math);
-
-                    context.Ratings.Remove(ratingToDelete);
-                });
-
-                mathRatingsToAdd.ForEach(x =>
-                {
-                    var ratingToAdd = new Rating
-                    {
-                        Rate = x,
-                        StudentId = student.Id,
-                        SubjectId = (int)Subject.Math
-                    };
-                    context.Ratings.Add(ratingToAdd);
-                });
+                context.SaveChanges();
             }
         }
 
+        private static List<Rating> GetStudentRatings(ApplicationDBContext context, Student student)
+        {
+            return context.Ratings.Where(x => x.StudentId == student.Id).ToList();
+        }
 
+        private void UpdateStudentProperties(ApplicationDBContext context, Student student)
+        {
+            var studentToUpdate = context.Students.Find(student.Id);
+            studentToUpdate.Activities = student.Activities;
+            studentToUpdate.Comments = student.Comments;
+            studentToUpdate.FirstName = student.FirstName;
+            studentToUpdate.LastName = student.LastName;
+            studentToUpdate.GroupId = student.GroupId;
+        }
+
+        private static void UpdateRate(Student student, List<Rating> newRatings, ApplicationDBContext context, List<Rating> studentsRatings, Subject subject)
+        {
+            var subRatings = studentsRatings.Where(x => x.SubjectId == (int)subject).Select(x => x.Rate);
+
+            var newSubRatings = newRatings.Where(x => x.SubjectId == (int)subject).Select(x => x.Rate);
+
+            var subRatingsToDelete = subRatings.Except(newSubRatings).ToList();
+
+            var subRatingsToAdd = newSubRatings.Except(subRatings).ToList();
+
+            subRatingsToDelete.ForEach(x =>
+            {
+                var ratingToDelete = context.Ratings.First(y =>
+                y.Rate == x &&
+                y.StudentId == student.Id &&
+                y.SubjectId == (int)subject);
+
+                context.Ratings.Remove(ratingToDelete);
+            });
+
+            subRatingsToAdd.ForEach(x =>
+            {
+                var ratingToAdd = new Rating
+                {
+                    Rate = x,
+                    StudentId = student.Id,
+                    SubjectId = (int)subject
+                };
+                context.Ratings.Add(ratingToAdd);
+            });
+        }
     }
 }

@@ -88,7 +88,7 @@ namespace Diary.ViewModels
             set
             {
                 _groups = value;
-                OnPropertyChanged(nameof(Groups));
+                OnPropertyChanged();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Diary.ViewModels
         private async Task DeleteStudents(object obj)
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
-            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia {SelectedStudent.FirstName}  {SelectedStudent.LastName}", MessageDialogStyle.AffirmativeAndNegative);
+            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia {SelectedStudent.FirstName}  {SelectedStudent.LastName}?", MessageDialogStyle.AffirmativeAndNegative);
 
             if (dialog != MessageDialogResult.Affirmative)
                 return;
