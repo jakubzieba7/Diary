@@ -9,7 +9,7 @@ namespace Diary
     public class ApplicationDBContext : DbContext
     {
         public ApplicationDBContext()
-            : base("name=ApplicationDBContext")
+            : base(@"Server=(local)\SIGMANEST;Database=DIARY;User Id=SA;Password=Shark1445NE$T;")
         {
         }
 
