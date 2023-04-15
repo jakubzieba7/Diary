@@ -224,7 +224,7 @@
     <Compile Include="ApplicationDBContext.cs" />
     <Compile Include="Commands\AsyncRelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="ConfigDBClass.cs" />
+    <Compile Include="SQLDBConnectionConfig.cs" />
     <Compile Include="Migrations\202304061938597_InitialCreate.cs" />
     <Compile Include="Migrations\202304061938597_InitialCreate.designer.cs">
       <DependentUpon>202304061938597_InitialCreate.cs</DependentUpon>

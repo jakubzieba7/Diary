@@ -8,8 +8,8 @@ namespace Diary
 {
     public class ApplicationDBContext : DbContext
     {
-        public ApplicationDBContext()
-            : base(@"Server=(local)\SIGMANEST;Database=DIARY;User Id=SA;Password=Shark1445NE$T;")
+        private static SQLDBConnectionConfig _configDB = new SQLDBConnectionConfig();
+        public ApplicationDBContext() : base(_configDB.SQLConnectionString)
         {
         }
 

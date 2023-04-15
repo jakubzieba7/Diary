@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Diary.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.</Value>
+    </Setting>
+    <Setting Name="ServerInstance" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SIGMANEST</Value>
+    </Setting>
+    <Setting Name="ServerUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SA</Value>
+    </Setting>
+    <Setting Name="ServerUserPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Shark1445NE$T</Value>
+    </Setting>
+    <Setting Name="SQLDatabaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DIARY</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
