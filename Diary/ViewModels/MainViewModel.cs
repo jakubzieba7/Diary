@@ -2,6 +2,7 @@
 using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
+using Diary.Properties;
 using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -31,7 +32,7 @@ namespace Diary.ViewModels
             EditStudentCommand = new RelayCommand(AddEditStudents, CanEditDeleteStudents);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudents, CanEditDeleteStudents);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
-            SQLSettingsCommand = new RelayCommand(RefreshStudents);
+            SQLSettingsCommand = new RelayCommand(AddEditSQLSettings);
 
             RefreshDiary();
             InitGroups();
@@ -109,6 +110,18 @@ namespace Diary.ViewModels
             _repository.DeleteStudent(SelectedStudent.Id);
 
             RefreshDiary();
+        }
+
+        private void AddEditSQLSettings(object obj)
+        {
+            var addEditSQLSettingsWindow = new SQLSettingsView(obj as SQLSettings);
+            addEditSQLSettingsWindow.Closed += AddEditSQLSettingsWindow_Closed;
+            addEditSQLSettingsWindow.ShowDialog();
+        }
+
+        private void AddEditSQLSettingsWindow_Closed(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
         }
 
         private void AddEditStudents(object obj)

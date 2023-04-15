@@ -1,4 +1,5 @@
-﻿using Diary.ViewModels;
+﻿using Diary.Models.Domains;
+using Diary.ViewModels;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,10 @@ namespace Diary.Views
     /// </summary>
     public partial class SQLSettingsView : MetroWindow
     {
-        public SQLSettingsView()
+        public SQLSettingsView(SQLSettings sqlSettings = null)
         {
             InitializeComponent();
-            DataContext = new SQLSettingsViewModel();
+            DataContext = new SQLSettingsViewModel(sqlSettings);
         }
     }
 }
