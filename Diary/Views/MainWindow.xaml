@@ -49,6 +49,14 @@
                 SelectedValuePath="Id"
                 />
             <Button Command="{Binding RefreshStudentsCommand}" Content="Odśwież" Height="25" Width="100" Margin="5"/>
+            <Button 
+                Command="{Binding DeleteStudentCommand}"
+                Content="Ustawienia SQL" 
+                Height="25" 
+                Width="100" 
+                Margin="5"
+                
+                />
         </StackPanel>
         <DataGrid 
             Grid.Row="1" 
