@@ -1,4 +1,5 @@
 ﻿using Diary.Models.Domains;
+using Diary.Models.Wrappers;
 using Diary.ViewModels;
 using MahApps.Metro.Controls;
 using System;

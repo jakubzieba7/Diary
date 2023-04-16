@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Diary.Views"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
+        Name="AddEditSQLConnectionSettingsWindow"
+        WindowStartupLocation="CenterScreen"
         Title="Ustawienia połączenia z bazą danych SQL" Height="350" Width="400">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,24 +25,28 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Nazwa serwera SQL" Margin="5"/>
-        <TextBox Text="{Binding SQLSettings.ServerName}" IsReadOnly="True" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding SQLSettings.ServerName,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="1" Content="Instancja serwera SQL" Margin="5"/>
-        <TextBox Text="{Binding SQLSettings.ServerInstance}" Grid.Row="1" Grid.Column="1" Margin="5"/>
-        
+        <TextBox Text="{Binding SQLSettings.ServerInstance,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
         <Label Grid.Row="2" Content="Nazwa bazy danych SQL" Margin="5"/>
-        <TextBox Text="{Binding SQLSettings.SQLDatabaseName}" Grid.Row="2" Grid.Column="1" Margin="5"/>
-        
+        <TextBox Text="{Binding SQLSettings.SQLDatabaseName,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
         <Label Grid.Row="3" Content="Login" Margin="5"/>
-        <TextBox Text="{Binding SQLSettings.ServerUserName}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding SQLSettings.ServerUserName,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="4" Content="Hasło" Margin="5"/>
-        <TextBox Text="{Binding SQLSettings.ServerUserPassword}" Grid.Row="4" Grid.Column="1" Margin="5"/>
-
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
-            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
-        </StackPanel>
+        <TextBox Text="{Binding SQLSettings.ServerUserPassword,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="4" Grid.Column="1" Margin="5"/>
         
+        <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding TestSQLConnectionCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Test" Height="25" Width="100" Margin="5"/>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
+        </StackPanel>
+
     </Grid>
 </mah:MetroWindow>

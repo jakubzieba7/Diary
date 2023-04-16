@@ -214,7 +214,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Domains\SQLSettings.cs" />
+    <Compile Include="Models\Wrappers\SQLSettings.cs" />
     <Compile Include="Views\SQLSettingsView.xaml.cs">
       <DependentUpon>SQLSettingsView.xaml</DependentUpon>
     </Compile>

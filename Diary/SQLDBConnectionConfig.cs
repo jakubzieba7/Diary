@@ -1,4 +1,5 @@
-﻿using Diary.Properties;
+﻿using Diary.Models.Wrappers;
+using Diary.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -31,5 +32,6 @@ namespace Diary
                 SQLConnectionString = value;
             }
         }
+
     }
 }
