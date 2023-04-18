@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="ServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.</Value>
+      <Value Profile="(Default)">(local)</Value>
     </Setting>
     <Setting Name="ServerInstance" Type="System.String" Scope="User">
       <Value Profile="(Default)">SIGMANEST</Value>
     </Setting>
     <Setting Name="ServerUserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SA</Value>
+      <Value Profile="(Default)">DOTNET</Value>
     </Setting>
     <Setting Name="ServerUserPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Shark1445NE$T</Value>
+      <Value Profile="(Default)">DOTNET</Value>
     </Setting>
     <Setting Name="SQLDatabaseName" Type="System.String" Scope="User">
       <Value Profile="(Default)">DIARY</Value>

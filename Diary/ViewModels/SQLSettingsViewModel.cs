@@ -1,5 +1,5 @@
 ﻿using Diary.Commands;
-using Diary.Models.Wrappers;
+using Diary.Models;
 using Diary.Properties;
 using System.Windows;
 using System.Windows.Input;
@@ -10,14 +10,21 @@ namespace Diary.ViewModels
     {
         public SQLSettingsViewModel(SQLSettings sqlSettings)
         {
+            
+
+            //if (sqlSettings == null)
+                SQLSettings = new SQLSettings();
+            //else
+            //    SQLSettings = sqlSettings;
+        }
+
+        public SQLSettingsViewModel()
+        {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
             TestSQLConnectionCommand = new RelayCommand(TestSQLConnection);
 
-            if (sqlSettings == null)
-                SQLSettings = new SQLSettings();
-            else
-                SQLSettings = sqlSettings;
+            _sqlSettings = new SQLSettings();
         }
 
         public ICommand CloseCommand { get; set; }

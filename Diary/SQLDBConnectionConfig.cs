@@ -1,4 +1,4 @@
-﻿using Diary.Models.Wrappers;
+﻿using Diary.Models;
 using Diary.Properties;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,6 @@ namespace Diary
             SetProviderServices(SqlProviderServices.ProviderInvariantName, SqlProviderServices.Instance);
             SetDefaultConnectionFactory(new SqlConnectionFactory());
         }
-
         public string SQLConnectionString
         {
             get

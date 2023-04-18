@@ -1,18 +1,10 @@
 ﻿using Diary.Properties;
 using System.ComponentModel;
 
-namespace Diary.Models.Wrappers
+namespace Diary.Models
 {
     public class SQLSettings : IDataErrorInfo
     {
-        //public SQLSettings()
-        //{
-        //    ServerName = Settings.Default.ServerName;
-        //    ServerInstance = Settings.Default.ServerInstance;
-        //    SQLDatabaseName = Settings.Default.SQLDatabaseName;
-        //    ServerUserName = Settings.Default.ServerUserName;
-        //    ServerUserPassword = Settings.Default.ServerUserPassword;
-        //}
         public string ServerName
         {
             get

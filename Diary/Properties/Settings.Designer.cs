@@ -25,7 +25,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(local)")]
         public string ServerName {
             get {
                 return ((string)(this["ServerName"]));
@@ -49,7 +49,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DOTNET")]
         public string ServerUserName {
             get {
                 return ((string)(this["ServerUserName"]));
@@ -61,7 +61,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Shark1445NE$T")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DOTNET")]
         public string ServerUserPassword {
             get {
                 return ((string)(this["ServerUserPassword"]));

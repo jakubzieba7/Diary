@@ -114,7 +114,7 @@ namespace Diary.ViewModels
 
         private void AddEditSQLSettings(object obj)
         {
-            var addEditSQLSettingsWindow = new SQLSettingsView(obj as SQLSettings);
+            var addEditSQLSettingsWindow = new SQLSettingsView();
             addEditSQLSettingsWindow.Closed += AddEditSQLSettingsWindow_Closed;
             addEditSQLSettingsWindow.ShowDialog();
         }

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Name="AddEditSQLConnectionSettingsWindow"
         WindowStartupLocation="CenterScreen"
-        Title="Ustawienia połączenia z bazą danych SQL" Height="350" Width="400">
+        Title="Ustawienia połączenia z bazą danych SQL" Height="300" Width="350">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,6 +17,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -39,11 +40,11 @@
         <Label Grid.Row="4" Content="Hasło" Margin="5"/>
         <TextBox Text="{Binding SQLSettings.ServerUserPassword,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="4" Grid.Column="1" Margin="5"/>
         
-        <StackPanel Grid.Row="5" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Command="{Binding TestSQLConnectionCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Test" Height="25" Width="100" Margin="5"/>
             
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
             <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
         </StackPanel>
