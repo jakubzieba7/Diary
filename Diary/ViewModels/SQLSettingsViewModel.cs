@@ -1,6 +1,7 @@
 ﻿using Diary.Commands;
 using Diary.Models;
 using Diary.Properties;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,16 +9,6 @@ namespace Diary.ViewModels
 {
     public class SQLSettingsViewModel : ViewModelBase
     {
-        public SQLSettingsViewModel(SQLSettings sqlSettings)
-        {
-            
-
-            //if (sqlSettings == null)
-                SQLSettings = new SQLSettings();
-            //else
-            //    SQLSettings = sqlSettings;
-        }
-
         public SQLSettingsViewModel()
         {
             CloseCommand = new RelayCommand(Close);
@@ -67,10 +58,13 @@ namespace Diary.ViewModels
                 return;
 
             Settings.Default.Save();
-
-            CloseWindow(obj as Window);
+            AplicationRestart();
         }
 
-
+        private void AplicationRestart()
+        {
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
     }
 }

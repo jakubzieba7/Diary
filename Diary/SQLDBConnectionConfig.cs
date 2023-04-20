@@ -23,7 +23,7 @@ namespace Diary
         {
             get
             {
-                var connectionString = string.Concat("Server=", Settings.Default.ServerName, @"\", Settings.Default.ServerInstance, ";Database=", Settings.Default.SQLDatabaseName, ";User Id=", Settings.Default.ServerUserName, ";Password=", Settings.Default.ServerUserPassword, ";");
+                var connectionString = string.Concat("Server=", Settings.Default.ServerName, @"\", Settings.Default.ServerInstance, "; Database=", Settings.Default.SQLDatabaseName, "; User Id=", Settings.Default.ServerUserName, ";Password=", Settings.Default.ServerUserPassword, ";");
                 return connectionString;
             }
             set

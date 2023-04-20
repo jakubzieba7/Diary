@@ -36,9 +36,8 @@ namespace Diary.ViewModels
 
             RefreshDiary();
             InitGroups();
+            
         }
-
-
 
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }

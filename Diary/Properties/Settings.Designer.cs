@@ -49,6 +49,18 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DIARY")]
+        public string SQLDatabaseName {
+            get {
+                return ((string)(this["SQLDatabaseName"]));
+            }
+            set {
+                this["SQLDatabaseName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("DOTNET")]
         public string ServerUserName {
             get {
@@ -68,18 +80,6 @@ namespace Diary.Properties {
             }
             set {
                 this["ServerUserPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DIARY")]
-        public string SQLDatabaseName {
-            get {
-                return ((string)(this["SQLDatabaseName"]));
-            }
-            set {
-                this["SQLDatabaseName"] = value;
             }
         }
     }
