@@ -215,6 +215,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\SQLSettings.cs" />
+    <Compile Include="SQLConnectionHelper.cs" />
     <Compile Include="System\Windows\Forms.cs" />
     <Compile Include="Views\SQLSettingsView.xaml.cs">
       <DependentUpon>SQLSettingsView.xaml</DependentUpon>

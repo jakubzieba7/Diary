@@ -1,6 +1,7 @@
 ﻿using Diary.Commands;
 using Diary.Models;
 using Diary.Properties;
+using Diary.Views;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -22,6 +23,7 @@ namespace Diary.ViewModels
         public ICommand ConfirmCommand { get; set; }
         public ICommand TestSQLConnectionCommand { get; set; }
 
+        private SQLConnectionHelper _sqlConnectionHelper = new SQLConnectionHelper();
         private SQLSettings _sqlSettings;
 
         public SQLSettings SQLSettings
@@ -39,14 +41,19 @@ namespace Diary.ViewModels
 
         private void TestSQLConnection(object obj)
         {
+            var addEditSQLSettingsWindow = new SQLSettingsView();
+
+            _sqlConnectionHelper.TestSQLConnection();
+            Settings.Default.Save();
             CloseWindow(obj as Window);
+            addEditSQLSettingsWindow.ShowDialog();
         }
 
         private void Close(object obj)
         {
             CloseWindow(obj as Window);
         }
-
+        
         private void CloseWindow(Window window)
         {
             window.Close();

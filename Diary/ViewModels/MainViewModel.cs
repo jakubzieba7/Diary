@@ -37,37 +37,8 @@ namespace Diary.ViewModels
 
             RefreshDiary();
             InitGroups();
-            IsSQLConnectionSuccessful();
+            _sqlConnectionHelper.IsSQLConnectionSuccessful();
 
-        }
-
-        private async void IsSQLConnectionSuccessful()
-        {
-            var context = new ApplicationDBContext();
-
-            try
-            {
-                context.Database.Connection.Open();
-                context.Database.Connection.Close();
-            }
-            catch (SqlException ex)
-            {
-                await EditSQLConnectionData();
-            }
-        }
-
-        private async Task EditSQLConnectionData()
-        {
-            var metroWindow = Application.Current.MainWindow as MetroWindow;
-            var dialog = await metroWindow.ShowMessageAsync("Niewłaściwe dane do połączenia z bazą SQL", "Czy chcesz edytować dane do połączenia z bazą SQL?", MessageDialogStyle.AffirmativeAndNegative);
-
-            if (dialog == MessageDialogResult.Affirmative)
-            {
-                var addEditSQLSettingsWindow = new SQLSettingsView();
-                addEditSQLSettingsWindow.ShowDialog();
-            }
-            else
-                Application.Current.MainWindow.Close();
         }
 
         public ICommand AddStudentCommand { get; set; }
@@ -76,7 +47,7 @@ namespace Diary.ViewModels
         public ICommand RefreshStudentsCommand { get; set; }
         public ICommand SQLSettingsCommand { get; set; }
 
-
+        private SQLConnectionHelper _sqlConnectionHelper = new SQLConnectionHelper();
         private StudentWrapper _selectedStudent;
 
         public StudentWrapper SelectedStudent
