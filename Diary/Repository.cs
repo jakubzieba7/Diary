@@ -1,14 +1,10 @@
 ﻿using Diary.Models.Domains;
 using Diary.Models.Wrappers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 using Diary.Models.Converters;
 using Diary.Models;
-using System.Runtime.Remoting.Contexts;
 
 namespace Diary
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Diary.Models.Wrappers
 {
@@ -14,7 +8,6 @@ namespace Diary.Models.Wrappers
         {
             Group = new GroupWrapper();
         }
-
 
         public int Id { get; set; }
         public string FirstName { get; set; }
