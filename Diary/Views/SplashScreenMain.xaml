@@ -1,0 +1,22 @@
+﻿<Window x:Class="Diary.Views.SplashScreenMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diary.Views"
+        mc:Ignorable="d"
+        Title="SplashScreenMain" Height="200" Width="400"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50">
+            <TextBlock Margin="0 30 0 15" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Left" Text="Ładowanie aplikacji.."></TextBlock>
+            <ProgressBar Margin="0 0 0 10" Name="progressBar" IsIndeterminate="True" Value="0" Height="5" Width="280"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

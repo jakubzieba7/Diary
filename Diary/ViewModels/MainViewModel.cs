@@ -7,14 +7,14 @@ using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Resources;
 
 namespace Diary.ViewModels
 {
@@ -38,8 +38,10 @@ namespace Diary.ViewModels
             RefreshDiary();
             InitGroups();
             _sqlConnectionHelper.IsSQLConnectionSuccessful();
-
+            RunSplashScreen();
         }
+
+        
 
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
@@ -157,6 +159,15 @@ namespace Diary.ViewModels
         {
             Students = new ObservableCollection<StudentWrapper>
             (_repository.GetStudents(SelectedGroupId));
+        }
+
+        private void RunSplashScreen()
+        {
+            //Uri uri = new Uri("Views/SplashScreenMain.xaml", UriKind.Relative);
+            //StreamResourceInfo info = Application.GetResourceStream(uri);
+            //XamlReader reader = new XamlReader();
+            //Page page = (Page)reader.LoadAsync(info.Stream);
+            //this.pageFrame.Content = page;
         }
     }
 }
