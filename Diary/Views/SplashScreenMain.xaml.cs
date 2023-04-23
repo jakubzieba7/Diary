@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Diary.ViewModels;
+using MahApps.Metro.Controls;
+using System;
 using System.ComponentModel;
 using System.Threading;
 
@@ -12,6 +14,7 @@ namespace Diary.Views
         public SplashScreenMain()
         {
             InitializeComponent();
+            DataContext = new SplashScreenMainViewModel();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)

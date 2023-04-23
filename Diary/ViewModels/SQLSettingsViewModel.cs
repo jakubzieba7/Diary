@@ -46,7 +46,6 @@ namespace Diary.ViewModels
             _sqlConnectionHelper.TestSQLConnection();
             Settings.Default.Save();
             CloseWindow(obj as Window);
-            addEditSQLSettingsWindow.ShowDialog();
         }
 
         private void Close(object obj)

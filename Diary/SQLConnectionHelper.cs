@@ -31,8 +31,11 @@ namespace Diary
 
             try
             {
-                context.Database.Connection.Open();
-                context.Database.Connection.Close();
+                using (var connection = context.Database.Connection)
+                {
+                    context.Database.Connection.Open();
+                    context.Database.Connection.Close();
+                }
             }
             catch (SqlException ex)
             {
@@ -52,7 +55,7 @@ namespace Diary
                 addEditSQLSettingsWindow.ShowDialog();
             }
             else
-                Application.Current.MainWindow.Close();
+                Application.Current.Shutdown();
         }
 
         private void EditSQLConnectionData()

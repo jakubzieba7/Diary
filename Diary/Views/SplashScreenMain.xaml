@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diary.Views"
         mc:Ignorable="d"
-        Title="SplashScreenMain" Height="200" Width="400"
+        Title="SplashScreenMain" Height="200" Width="300"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered">
+        WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50">
-            <TextBlock Margin="0 30 0 15" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Left" Text="Ładowanie aplikacji.."></TextBlock>
-            <ProgressBar Margin="0 0 0 10" Name="progressBar" IsIndeterminate="True" Value="0" Height="5" Width="280"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Width="200">
+            <TextBlock FontSize="17" HorizontalAlignment="Center" FontWeight="SemiBold" Text="Ładowanie aplikacji..." Width="160"/>
+            <ProgressBar x:Name="progressBar" IsIndeterminate="True" Height="5" Width="280"/>
         </StackPanel>
 
     </Grid>

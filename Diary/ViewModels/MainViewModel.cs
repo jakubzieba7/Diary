@@ -1,5 +1,4 @@
 ﻿using Diary.Commands;
-using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
 using Diary.Properties;
@@ -11,10 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Resources;
 
 namespace Diary.ViewModels
 {
@@ -34,11 +30,12 @@ namespace Diary.ViewModels
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudents, CanEditDeleteStudents);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
             SQLSettingsCommand = new RelayCommand(AddEditSQLSettings);
+            
+            _sqlConnectionHelper.IsSQLConnectionSuccessful();
 
             RefreshDiary();
             InitGroups();
-            _sqlConnectionHelper.IsSQLConnectionSuccessful();
-            RunSplashScreen();
+            RunSplashScreenAtStartup();
         }
 
         
@@ -161,13 +158,14 @@ namespace Diary.ViewModels
             (_repository.GetStudents(SelectedGroupId));
         }
 
-        private void RunSplashScreen()
+        private void RunSplashScreenAtStartup()
         {
             //Uri uri = new Uri("Views/SplashScreenMain.xaml", UriKind.Relative);
             //StreamResourceInfo info = Application.GetResourceStream(uri);
             //XamlReader reader = new XamlReader();
             //Page page = (Page)reader.LoadAsync(info.Stream);
             //this.pageFrame.Content = page;
+
         }
     }
 }

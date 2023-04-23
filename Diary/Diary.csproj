@@ -230,6 +230,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\SQLSettings.cs" />
+    <Compile Include="ViewModels\SplashScreenMainViewModel.cs" />
     <Compile Include="Views\SplashScreenMain.xaml.cs">
       <DependentUpon>SplashScreenMain.xaml</DependentUpon>
     </Compile>
