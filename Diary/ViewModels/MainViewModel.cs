@@ -30,12 +30,15 @@ namespace Diary.ViewModels
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudents, CanEditDeleteStudents);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
             SQLSettingsCommand = new RelayCommand(AddEditSQLSettings);
-            
+            SplashScreenWindowCommand = new RelayCommand(SplashScreenAtStartup);
+
+
             _sqlConnectionHelper.IsSQLConnectionSuccessful();
 
             RefreshDiary();
             InitGroups();
             RunSplashScreenAtStartup();
+            SplashScreenAtStartup(null);
         }
 
         
@@ -45,6 +48,7 @@ namespace Diary.ViewModels
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
         public ICommand SQLSettingsCommand { get; set; }
+        public ICommand SplashScreenWindowCommand { get; set; }
 
         private SQLConnectionHelper _sqlConnectionHelper = new SQLConnectionHelper();
         private StudentWrapper _selectedStudent;
@@ -166,6 +170,14 @@ namespace Diary.ViewModels
             //Page page = (Page)reader.LoadAsync(info.Stream);
             //this.pageFrame.Content = page;
 
+        }
+
+        private async void SplashScreenAtStartup(object arg)
+        {
+            //var splashScreen = new SplashScreenMain();
+            //splashScreen.ShowDialog();
+            //await Task.Delay(3000);
+            //splashScreen.Close();
         }
     }
 }

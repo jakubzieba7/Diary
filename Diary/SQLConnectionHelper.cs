@@ -12,8 +12,6 @@ namespace Diary
     {
         public async void IsSQLConnectionSuccessful()
         {
-
-
             try
             {
                 using (var context = new ApplicationDBContext())
@@ -30,11 +28,9 @@ namespace Diary
 
         public void TestSQLConnection()
         {
-            var context = new ApplicationDBContext();
-
             try
             {
-                using (var connection = context.Database.Connection)
+                using (var context = new ApplicationDBContext())
                 {
                     context.Database.Connection.Open();
                     context.Database.Connection.Close();
