@@ -10,13 +10,14 @@ namespace Diary.ViewModels
 {
     public class SQLSettingsViewModel : ViewModelBase
     {
-        public SQLSettingsViewModel()
+        public SQLSettingsViewModel(bool canCloseWindow)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
             TestSQLConnectionCommand = new RelayCommand(TestSQLConnection);
 
             _sqlSettings = new SQLSettings();
+            _canCloseWindow = canCloseWindow;
         }
 
         public ICommand CloseCommand { get; set; }
@@ -25,6 +26,7 @@ namespace Diary.ViewModels
 
         private SQLConnectionHelper _sqlConnectionHelper = new SQLConnectionHelper();
         private SQLSettings _sqlSettings;
+        private readonly bool _canCloseWindow;
 
         public SQLSettings SQLSettings
         {
@@ -41,8 +43,6 @@ namespace Diary.ViewModels
 
         private void TestSQLConnection(object obj)
         {
-            var addEditSQLSettingsWindow = new SQLSettingsView();
-
             _sqlConnectionHelper.TestSQLConnection();
             Settings.Default.Save();
             CloseWindow(obj as Window);
@@ -50,9 +50,12 @@ namespace Diary.ViewModels
 
         private void Close(object obj)
         {
-            CloseWindow(obj as Window);
+            if (_canCloseWindow)
+                CloseWindow(obj as Window);
+            else
+                Application.Current.Shutdown();
         }
-        
+
         private void CloseWindow(Window window)
         {
             window.Close();

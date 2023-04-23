@@ -24,10 +24,10 @@ namespace Diary.Views
     /// </summary>
     public partial class SQLSettingsView : MetroWindow
     {
-        public SQLSettingsView()
+        public SQLSettingsView(bool canCloseWindow)
         {
             InitializeComponent();
-            DataContext = new SQLSettingsViewModel();
+            DataContext = new SQLSettingsViewModel(canCloseWindow);
         }
     }
 }

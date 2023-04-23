@@ -12,12 +12,15 @@ namespace Diary
     {
         public async void IsSQLConnectionSuccessful()
         {
-            var context = new ApplicationDBContext();
+
 
             try
             {
-                context.Database.Connection.Open();
-                context.Database.Connection.Close();
+                using (var context = new ApplicationDBContext())
+                {
+                    context.Database.Connection.Open();
+                    context.Database.Connection.Close();
+                }
             }
             catch (SqlException ex)
             {
@@ -51,7 +54,7 @@ namespace Diary
 
             if (dialog == MessageDialogResult.Affirmative)
             {
-                var addEditSQLSettingsWindow = new SQLSettingsView();
+                var addEditSQLSettingsWindow = new SQLSettingsView(false);
                 addEditSQLSettingsWindow.ShowDialog();
             }
             else
@@ -64,7 +67,7 @@ namespace Diary
             var dialog = metroWindow.ShowModalMessageExternal("Niewłaściwe dane do połączenia z bazą SQL", "Czy chcesz edytować dane do połączenia z bazą SQL?", MessageDialogStyle.AffirmativeAndNegative);
             if (dialog == MessageDialogResult.Affirmative)
             {
-                var addEditSQLSettingsWindow = new SQLSettingsView();
+                var addEditSQLSettingsWindow = new SQLSettingsView(true);
                 addEditSQLSettingsWindow.ShowDialog();
             }
             else
