@@ -13,16 +13,17 @@ namespace Diary
             SetProviderServices(SqlProviderServices.ProviderInvariantName, SqlProviderServices.Instance);
             SetDefaultConnectionFactory(new SqlConnectionFactory());
         }
+        private string _connectionString;
         public string SQLConnectionString
         {
             get
             {
-                var connectionString = string.Concat("Server=", Settings.Default.ServerName, @"\", Settings.Default.ServerInstance, "; Database=", Settings.Default.SQLDatabaseName, "; User Id=", Settings.Default.ServerUserName, ";Password=", Settings.Default.ServerUserPassword, ";");
-                return connectionString;
+                _connectionString = string.Concat("Server=", Settings.Default.ServerName, @"\", Settings.Default.ServerInstance, "; Database=", Settings.Default.SQLDatabaseName, "; User Id=", Settings.Default.ServerUserName, ";Password=", Settings.Default.ServerUserPassword, ";");
+                return _connectionString;
             }
             set
             {
-                SQLConnectionString = value;
+                _connectionString = value;
             }
         }
 

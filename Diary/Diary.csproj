@@ -229,6 +229,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ExceptHelper.cs" />
     <Compile Include="Models\SQLSettings.cs" />
     <Compile Include="ViewModels\SplashScreenMainViewModel.cs" />
     <Compile Include="Views\SplashScreenMain.xaml.cs">

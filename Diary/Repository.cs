@@ -103,9 +103,8 @@ namespace Diary
 
             var newSubRatings = newRatings.Where(x => x.SubjectId == (int)subject).Select(x => x.Rate);
 
-            var subRatingsToDelete = subRatings.Except(newSubRatings).ToList();
-
-            var subRatingsToAdd = newSubRatings.Except(subRatings).ToList();
+            var subRatingsToDelete = subRatings.ExceptAll(newSubRatings).ToList();
+            var subRatingsToAdd = newSubRatings.ExceptAll(subRatings).ToList();
 
             subRatingsToDelete.ForEach(x =>
             {
