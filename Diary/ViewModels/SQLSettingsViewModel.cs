@@ -66,8 +66,13 @@ namespace Diary.ViewModels
             if (!SQLSettings.IsValid)
                 return;
 
-            Settings.Default.Save();
-            AplicationRestart();
+            if (!_sqlConnectionHelper.IsSQLConnectionSuccessful())
+                _sqlConnectionHelper.EditSQLConnectionData();
+            else
+            {
+                Settings.Default.Save();
+                AplicationRestart();
+            }
         }
 
         private void AplicationRestart()

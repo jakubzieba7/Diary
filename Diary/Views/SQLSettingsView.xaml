@@ -41,12 +41,12 @@
         <TextBox Text="{Binding SQLSettings.ServerUserPassword,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="4" Grid.Column="1" Margin="5"/>
         
         <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Command="{Binding TestSQLConnectionCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Test" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding TestSQLConnectionCommand}" Content="Test" Height="25" Width="100" Margin="5"/>
             
         </StackPanel>
         <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
-            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditSQLConnectionSettingsWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ConfirmCommand}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
         </StackPanel>
 
     </Grid>

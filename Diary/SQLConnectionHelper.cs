@@ -10,7 +10,7 @@ namespace Diary
 {
     public class SQLConnectionHelper
     {
-        public async void IsSQLConnectionSuccessful()
+        public bool IsSQLConnectionSuccessful()
         {
             try
             {
@@ -19,10 +19,12 @@ namespace Diary
                     context.Database.Connection.Open();
                     context.Database.Connection.Close();
                 }
+                return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                await EditSQLConnectionDataAsync();
+                //EditSQLConnectionDataAsync();
+                return false;
             }
         }
 
@@ -36,14 +38,14 @@ namespace Diary
                     context.Database.Connection.Close();
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 EditSQLConnectionData();
             }
             SQLConnectionSuccessMsg();
         }
 
-        private async Task EditSQLConnectionDataAsync()
+        public async Task EditSQLConnectionDataAsync()
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
             var dialog = await metroWindow.ShowMessageAsync("Niewłaściwe dane do połączenia z bazą SQL", "Czy chcesz edytować dane do połączenia z bazą SQL?", MessageDialogStyle.AffirmativeAndNegative);
@@ -57,7 +59,7 @@ namespace Diary
                 Application.Current.Shutdown();
         }
 
-        private void EditSQLConnectionData()
+        public void EditSQLConnectionData()
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
             var dialog = metroWindow.ShowModalMessageExternal("Niewłaściwe dane do połączenia z bazą SQL", "Czy chcesz edytować dane do połączenia z bazą SQL?", MessageDialogStyle.AffirmativeAndNegative);

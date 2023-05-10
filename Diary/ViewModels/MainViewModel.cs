@@ -20,10 +20,11 @@ namespace Diary.ViewModels
 
         public MainViewModel()
         {
-            using (var context = new ApplicationDBContext())
-            {
-                var students = context.Students.ToList();
-            }
+            //First query in order to create Database if not exists
+            //using (var context = new ApplicationDBContext())
+            //{
+            //    var students = context.Students.ToList();
+            //}
 
             AddStudentCommand = new RelayCommand(AddEditStudents);
             EditStudentCommand = new RelayCommand(AddEditStudents, CanEditDeleteStudents);
@@ -31,18 +32,17 @@ namespace Diary.ViewModels
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
             SQLSettingsCommand = new RelayCommand(AddEditSQLSettings);
             SplashScreenWindowCommand = new RelayCommand(SplashScreenAtStartup);
-
+            LoadedWindowCommand = new RelayCommand(LoadedWindow);
 
             _sqlConnectionHelper.IsSQLConnectionSuccessful();
 
-            RefreshDiary();
-            InitGroups();
-            RunSplashScreenAtStartup();
-            SplashScreenAtStartup(null);
+            
+            //RunSplashScreenAtStartup();
+            //SplashScreenAtStartup(null);
         }
 
-        
 
+        public ICommand LoadedWindowCommand { get; set; }
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
@@ -178,6 +178,17 @@ namespace Diary.ViewModels
             //splashScreen.ShowDialog();
             //await Task.Delay(3000);
             //splashScreen.Close();
+        }
+
+        private async void LoadedWindow(object obj)
+        {
+            if (!_sqlConnectionHelper.IsSQLConnectionSuccessful())
+                await _sqlConnectionHelper.EditSQLConnectionDataAsync();
+            else
+            {
+                RefreshDiary();
+                InitGroups();
+            }
         }
     }
 }

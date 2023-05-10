@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:Diary"
+        xmlns:local="clr-namespace:Diary.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
                  
@@ -13,14 +13,14 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding SplashScreenWindowCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-                </Grid.RowDefinitions>
+        </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
 
             <Button 
