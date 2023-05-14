@@ -18,7 +18,7 @@ namespace Diary.ViewModels
     {
         private Repository _repository = new Repository();
 
-        public MainViewModel()
+        public MainViewModel(IDialogCoordinator instance)
         {
             //First query in order to create Database if not exists
             //using (var context = new ApplicationDBContext())
@@ -35,8 +35,8 @@ namespace Diary.ViewModels
             LoadedWindowCommand = new RelayCommand(LoadedWindow);
 
             _sqlConnectionHelper.IsSQLConnectionSuccessful();
+            _dialogCoordinator = instance;
 
-            
             //RunSplashScreenAtStartup();
             //SplashScreenAtStartup(null);
         }
@@ -52,6 +52,7 @@ namespace Diary.ViewModels
 
         private SQLConnectionHelper _sqlConnectionHelper = new SQLConnectionHelper();
         private StudentWrapper _selectedStudent;
+        private IDialogCoordinator _dialogCoordinator;
 
         public StudentWrapper SelectedStudent
         {
@@ -180,15 +181,44 @@ namespace Diary.ViewModels
             //splashScreen.Close();
         }
 
+
         private async void LoadedWindow(object obj)
         {
-            if (!_sqlConnectionHelper.IsSQLConnectionSuccessful())
-                await _sqlConnectionHelper.EditSQLConnectionDataAsync();
-            else
+            ProgressDialogController controller = await _dialogCoordinator.ShowProgressAsync(this, "Cierpliwości!", "Oczekiwanie na połączenie z bazą danych SQL");
+
+            controller.SetIndeterminate();
+
+            await Task.Run(() =>
             {
-                RefreshDiary();
-                InitGroups();
+
+                if (!_sqlConnectionHelper.IsSQLConnectionSuccessful())
+                    EditSQLConnectionDataDialogCoord();
+                else
+                {
+                    RefreshDiary();
+                    InitGroups();
+                }
+
+            });
+
+            await controller.CloseAsync();
+        }
+
+        public async void EditSQLConnectionDataDialogCoord()
+        {
+            var dialog = await _dialogCoordinator.ShowMessageAsync(this, "Niewłaściwe dane do połączenia z bazą SQL", "Czy chcesz edytować dane do połączenia z bazą SQL?", MessageDialogStyle.AffirmativeAndNegative);
+
+            if (dialog == MessageDialogResult.Affirmative)
+            {
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    var addEditSQLSettingsWindow = new SQLSettingsView(false);
+                    addEditSQLSettingsWindow.ShowDialog();
+                });
+
             }
+            else
+                Application.Current.Shutdown();
         }
     }
 }

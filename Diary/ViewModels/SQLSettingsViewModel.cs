@@ -1,7 +1,6 @@
 ﻿using Diary.Commands;
 using Diary.Models;
 using Diary.Properties;
-using Diary.Views;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -43,9 +42,9 @@ namespace Diary.ViewModels
 
         private void TestSQLConnection(object obj)
         {
-            _sqlConnectionHelper.TestSQLConnection();
             Settings.Default.Save();
-            CloseWindow(obj as Window);
+            _sqlConnectionHelper.TestSQLConnection();
+            //CloseWindow(obj as Window);
         }
 
         private void Close(object obj)

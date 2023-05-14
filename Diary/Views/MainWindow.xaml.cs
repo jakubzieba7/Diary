@@ -1,5 +1,6 @@
 ﻿using Diary.ViewModels;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Diary.Views
 {
@@ -11,7 +12,7 @@ namespace Diary.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(DialogCoordinator.Instance);
         }
 
     }
